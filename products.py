@@ -29,7 +29,7 @@ class Product:
     @property
     def price(self)-> float:
         """Getter for name"""
-        return self.__name
+        return self.__price
 
     @price.setter
     def price(self, value) -> None:
@@ -76,3 +76,13 @@ class Product:
 
     def show(self):
         print(f"{self.name}, Price: {self.price}, Quantity: {self.quantity}")
+
+    def buy(self, amount):
+        if amount <= 0:
+            raise ValueError("Amount must be positive.")
+        if amount > self.quantity:
+            raise ValueError("Not enough stock to buy this amount.")
+
+        self.quantity = self.quantity - amount
+
+        return f"Bought {amount} units. Remaining stock: {self.quantity}"
